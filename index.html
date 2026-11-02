@@ -3,17 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>100 Memes</title>
+    <meta
+      name="description"
+      content="Type a number from 1 to 100 and see the matching meme template from the Imgflip top 100."
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <section>
-      <h1 class="header">enter number from 1 to 99</h1>
-      <input class="input" type="text" />
-      <button>show meme</button>
-      <h1 class="meme_name"></h1>
-      <div class="meme_img"><img src="" alt="" class="image" /></div>
-    </section>
+    <div class="page">
+      <header class="masthead">
+        <h1 class="title">100 <span>memes</span></h1>
+        <p class="lede">
+          Pick a number from 1 to 100 and see the meme template ranked there on
+          Imgflip.
+        </p>
+      </header>
+
+      <main>
+        <form id="picker" class="picker" novalidate>
+          <div class="picker__field">
+            <label for="number">Meme number</label>
+            <input
+              id="number"
+              name="number"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="100"
+              step="1"
+              value="1"
+              autocomplete="off"
+              aria-describedby="message"
+            />
+          </div>
+          <div class="picker__buttons">
+            <button type="submit" class="btn btn--primary">Show meme</button>
+            <button type="button" id="random" class="btn">Random</button>
+            <button type="button" id="prev" class="btn btn--icon" aria-label="Previous meme">&larr;</button>
+            <button type="button" id="next" class="btn btn--icon" aria-label="Next meme">&rarr;</button>
+          </div>
+        </form>
+
+        <p id="message" class="message" role="status" aria-live="polite">
+          Loading the meme list...
+        </p>
+
+        <div id="retry-row" class="retry" hidden>
+          <button type="button" id="retry" class="btn btn--primary">Try again</button>
+        </div>
+
+        <figure id="result" class="result" hidden>
+          <div class="frame" id="frame">
+            <img id="meme-img" alt="" width="500" height="500" />
+            <p id="frame-fallback" class="frame__fallback" hidden>
+              The image could not be loaded.
+            </p>
+          </div>
+          <figcaption>
+            <span id="rank" class="rank"></span>
+            <span id="meme-name" class="name"></span>
+          </figcaption>
+        </figure>
+      </main>
+
+      <footer class="footer">
+        <p>
+          Meme list and images are loaded live from the
+          <a href="https://imgflip.com/api" rel="noopener noreferrer">Imgflip API</a>.
+          This site stores no images.
+        </p>
+      </footer>
+    </div>
 
     <script src="main.js"></script>
   </body>
